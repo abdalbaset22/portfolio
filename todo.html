@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق قائمة المهام المطور</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-top: 0;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button.btn-add {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background: #f8f9fa;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-right: 4px solid #007bff;
+        }
+
+        li.completed .task-text {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .task-text {
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .btn-del {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="btn-back">⬅ العودة للمعرض</a>
+
+    <div class="container">
+        <h2>📝 قائمة مهامي</h2>
+        
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="أدخل مهمة جديدة...">
+            <button class="btn-add" onclick="addTask()">إضافة</button>
+        </div>
+
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", renderTasks);
+
+        function addTask() {
+            let input = document.getElementById("taskInput");
+            let text = input.value.trim();
+
+            if (text === "") return;
+
+            let tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
+            tasks.push({ text: text, completed: false });
+
+            localStorage.setItem("myTasks", JSON.stringify(tasks));
+            input.value = "";
+            renderTasks();
+        }
+
+        function renderTasks() {
+            let tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
+            let list = document.getElementById("taskList");
+            list.innerHTML = "";
+
+            tasks.forEach((task, index) => {
+                let li = document.createElement("li");
+                
+                if (task.completed) {
+                    li.classList.add("completed");
+                }
+
+                li.innerHTML = `
+                    <span class="task-text" onclick="toggleTask(${index})">${task.text}</span>
+                    <button class="btn-del" onclick="deleteTask(${index})">حذف</button>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        function toggleTask(index) {
+            let tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
+            tasks[index].completed = !tasks[index].completed;
+            localStorage.setItem("myTasks", JSON.stringify(tasks));
+            renderTasks();
+        }
+
+        function deleteTask(index) {
+            let tasks = JSON.parse(localStorage.getItem("myTasks")) || [];
+            tasks.splice(index, 1);
+            localStorage.setItem("myTasks", JSON.stringify(tasks));
+            renderTasks();
+        }
+    </script>
+
+</body>
+</html>
