@@ -1,171 +1,55 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة هبوط متكاملة</title>
-    
-    <style>
-        :root {
-            --bg-color: #f4f6f8;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --primary-color: #007bff;
-        }
-
-        .dark-theme {
-            --bg-color: #1e1e2f;
-            --card-bg: #2d2d44;
-            --text-color: #ffffff;
-            --primary-color: #00d2d3;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            transition: all 0.3s ease;
-        }
-
-        .navbar {
-            background-color: var(--card-bg);
-            padding: 15px 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .controls {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .btn-theme, .menu-btn {
-            background: none;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .nav-links {
-            display: none;
-            flex-direction: column;
-            gap: 12px;
-            list-style: none;
-            margin: 0;
-            padding: 15px 20px;
-            background-color: var(--card-bg);
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .nav-links.active {
-            display: flex;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: bold;
-        }
-
-        .hero {
-            padding: 30px 20px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            color: var(--primary-color);
-            font-size: 24px;
-        }
-
-        .services-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            padding: 0 20px 30px 20px;
-        }
-
-        .service-card {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-
-        .service-card h3 {
-            margin-top: 0;
-            color: var(--primary-color);
-        }
-
-        .btn-back {
-            display: inline-block;
-            margin: 20px;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحة ترويج منتج</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #ffffff;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .product-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 25px;
+      max-width: 400px;
+      margin: 30px auto;
+    }
+    .btn-buy {
+      display: inline-block;
+      background-color: #25D366;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 <body>
 
-    <a href="index.html" class="btn-back">⬅ العودة للمعرض</a>
+  <!-- العناوين الرئيسية -->
+  <h1>⚡ صفحة هبوط تسويق منتج</h1>
+  <p>عرض خاص وشامل لأحدث التقنيات والحلول الرقمية</p>
 
-    <nav>
-        <div class="navbar">
-            <div class="logo">موقعي🌐</div>
-            <div class="controls">
-                <button class="btn-theme" onclick="toggleTheme()">🌙</button>
-                <button class="menu-btn" onclick="toggleMenu()">☰</button>
-            </div>
-        </div>
+  <!-- كارت المنتج -->
+  <div class="product-box">
+    <h2>منظومات ومعدات الطاقة الذكية</h2>
+    <p>حلول متكاملة تضمن لك أعلى كفاءة وأداء مستقر مع المتابعة الذكية.</p>
+    
+    <!-- زر الشراء / التواصل بالعمولة -->
+    <a href="https://wa.me/967774185493" class="btn-buy" target="_blank">
+      📲 اطلب المنتج أو استفسر الآن
+    </a>
+  </div>
 
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#">الرئيسية</a></li>
-            <li><a href="#">خدماتنا</a></li>
-            <li><a href="#">اتصل بنا</a></li>
-        </ul>
-    </nav>
-
-    <div class="hero">
-        <h1>مرحباً بك في منصتنا الحديثة</h1>
-        <p>تصميم واجهات وتطبيقات متجاوبة بالكامل مع كافة الأجهزة.</p>
-    </div>
-
-    <div class="services-container">
-        <div class="service-card">
-            <h3>🎨 تصميم UI/UX</h3>
-            <p>تخطيط واجهات المستخدم بأسلوب ناعم وجذاب.</p>
-        </div>
-
-        <div class="service-card">
-            <h3>⚡ تطوير سريع</h3>
-            <p>كتابة أكواد نظيفة ومتوافقة مع شاشات الهواتف.</p>
-        </div>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById("navLinks").classList.toggle("active");
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle("dark-theme");
-        }
-    </script>
+  <p><a href="index.html" style="color: #38bdf8; text-decoration: none;">← العودة للمعرض الرئيسي</a></p>
 
 </body>
 </html>
